@@ -1,0 +1,1 @@
+<p class="footer">Copyright © 2016 Payment Form . All Rights Reserved </a></p>
