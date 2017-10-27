@@ -76,13 +76,13 @@
 													<h5>EMAIL ADDRESS</h5>
 														<input type="text" name="email" value="" required="true">
 													<h5>FIRST NAME</h5>	
-														<input type="text" name="firstname" value="Vikas Kumar" required="true"/>
+														<input type="text" name="firstname" value="" required="true"/>
 													<h5>LAST NAME</h5>	
 														<input type="text" name="lastname" value="" />
 													<h5>PH No</h5>
-														<input type="text" name="phone" value="9999999999" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+														<input type="text" name="phone" value="" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 													<h5>PRODUCT INFO </h5>
-														<input type="text" name="productinfo" value="SAU Admission 2014" />
+														<input type="text" name="productinfo" value=""  />
 													<h5>AMOUNT </h5>
 														<input type="text" name="amount" value="10" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 												</div>			
@@ -131,13 +131,13 @@
 													<h5>EMAIL ADDRESS</h5>
 														<input type="text" name="email" value="" required="true">
 													<h5>FIRST NAME</h5>	
-														<input type="text" name="firstname" value="Vikas Kumar" required="true"/>
+														<input type="text" name="firstname" value="" required="true"/>
 													<h5>LAST NAME</h5>	
 														<input type="text" name="lastname" value="" />
 													<h5>PH No</h5>
 														<input type="text" name="phone" value="9999999999" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 													<h5>PRODUCT INFO </h5>
-														<input type="text" name="productinfo" value="SAU Admission 2014" required="true" />
+														<input type="text" name="productinfo" value="" required="true" />
 													<h5>AMOUNT </h5>
 														<input type="text" name="amount" value="10" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 												</div>			

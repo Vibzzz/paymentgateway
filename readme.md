@@ -32,3 +32,18 @@
 
 3 - mongo setup
 	1 -set mongo details in env file 
+
+4 - card details for testing
+	for success response in both debit and credit card
+		master card - 
+		name on card  - any name
+		card no  - 5123456789012346
+		cvv - 123
+		Expiry: May 2020
+
+	for failure response in both debit and credit card
+		visa card - 
+		name on card  - any name
+		card no  - 4000019562093601
+		cvv - 123
+		Expiry: 01/2020	

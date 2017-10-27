@@ -8,6 +8,14 @@ use App\paymnet;
 use App\Helpers\Helper;
 use App\Models\paymentModel;
 
+
+/**
+    payment controller class to handel 
+    all payment related routing
+    
+**/
+
+
 class paymentController extends BaseController
 {
     /**
@@ -16,6 +24,7 @@ class paymentController extends BaseController
     **/
     public function userPaymentDetails(Request $request)
     {
+        // get headers and  params from request data
         $headers                = $request->header();
         $param                  = $request->all();
         $helperObj              = new Helper();
@@ -23,13 +32,15 @@ class paymentController extends BaseController
         $param['txnid']         = $txnid;
         $requestParam           = array_merge($param,config('customConfig'));
 
+        // generating hash by method which is provied by payu
         $hash                   = $helperObj->generateHash($requestParam);
         $requestParam['hash']   = $hash;
         // $requestParam['bankcode']   = "CC";
-        $paymentModelObj         = new paymentModel();
+        $paymentModelObj        = new paymentModel();
         
-        $paymnetResponse         = $paymentModelObj->processUserPaymentDetails($requestParam,$headers);
+        $paymnetResponse        = $paymentModelObj->processUserPaymentDetails($requestParam,$headers);
 
+        // redirect to checkout view with all required data to send payu gateway
         return view('checkout', ['url' => 'https://test.payu.in/_payment','param' => $requestParam]);
         
     }
@@ -40,11 +51,15 @@ class paymentController extends BaseController
 
     public function userPaymentSuccess(Request $request)
     {
+        // get headers and  params from request data
         $headers                = $request->header();
         $param                  = $request->all();
-        $paymentModelObj         = new paymentModel();
+        $paymentModelObj        = new paymentModel();
         
-        $paymnetResponse         = $paymentModelObj->updateStatus($param,array("status"=>"success"),$headers);
+        // send data to model to update current status of transaction 
+        $paymnetResponse        = $paymentModelObj->updateStatus($param,array("status"=>"success"),$headers);
+        
+        // redirect to sucess view if payu sends success response
         return view('success'); 
     }
 
@@ -53,11 +68,15 @@ class paymentController extends BaseController
     **/
     public function userPaymentFail(Request $request)
     {
+        // get headers and  params from request data
         $headers                = $request->header();
         $param                  = $request->all();
         $paymentModelObj         = new paymentModel();
         
+         // send data to model to update current status of transaction 
         $paymnetResponse         = $paymentModelObj->updateStatus($param,array("status"=>"failure"),$headers);
+        
+        // redirect to failue view if payu sends failure response
         return view('failure'); 
     }
     /**
@@ -65,11 +84,15 @@ class paymentController extends BaseController
     **/
     public function userPaymentCancel(Request $request)
     {
+        // get headers and  params from request data
         $headers                = $request->header();
         $param                  = $request->all();
-        $paymentModelObj         = new paymentModel();
+        $paymentModelObj        = new paymentModel();
         
-        $paymnetResponse         = $paymentModelObj->updateStatus($param,array("status"=>"failure"),$headers);
+        // send data to model to update current status of transaction
+        $paymnetResponse        = $paymentModelObj->updateStatus($param,array("status"=>"failure"),$headers);
+        
+        // redirect to failure view if payu sends failure response
         return view('failure');  
     }
 }
