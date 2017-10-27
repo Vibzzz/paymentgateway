@@ -74,17 +74,17 @@
 											<form method = "POST" action="/payment" >
 												<div class="tab-for">				
 													<h5>EMAIL ADDRESS</h5>
-														<input type="text" name="email" value="" required="true">
+														<input type="email" class="text_box" name="email" value="" required="true">
 													<h5>FIRST NAME</h5>	
 														<input type="text" name="firstname" value="" required="true"/>
 													<h5>LAST NAME</h5>	
 														<input type="text" name="lastname" value="" />
 													<h5>PH No</h5>
-														<input type="text" name="phone" value="" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+														<input type="text" name="phone" maxlength="10" value="" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 													<h5>PRODUCT INFO </h5>
 														<input type="text" name="productinfo" value=""  />
 													<h5>AMOUNT </h5>
-														<input type="text" name="amount" value="10" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+														<input type="text" name="amount" value="" required="true" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 												</div>			
 											
 											<h3 class="pay-title">Credit Card Info</h3>
@@ -93,7 +93,7 @@
 													<h5>NAME ON CARD</h5>
 														<input type="text" name="ccname" value="" required="true">
 													<h5>CARD NUMBER</h5>													
-														<input class="pay-logo" name="ccnum" type="text" value="0000-0000-0000-0000"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '0000-0000-0000-0000';};detectCardType(this.value)" required="true">
+														<input class="pay-logo" name="ccnum" maxlength="16" type="text" value="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  onblur="detectCardType(this.value)" required="true" > 
 														<label id = 'cardType' for="brand"><span></span></label>
 												</div>	
 												<div class="transaction">
@@ -101,17 +101,17 @@
 														<h5>EXPIRATION</h5>
 															<ul>
 																<li>
-																	<input type="number" name= "ccexpmon" class="text_box" type="text" value="6" min="1" required="true"/>	
+																	<input type="number" name= "ccexpmon" class="text_box" type="text" value="6" min="1" max ="12"required="true"/>	
 																</li>
 																<li>
-																	<input type="number" name= "ccexpyr" class="text_box" type="text" value="1988" min="1" required="true"/>	
+																	<input type="number" name= "ccexpyr" class="text_box" type="text" value="2020" min="1" required="true" width="100" />	
 																</li>
 																
 															</ul>
 													</div>
 													<div class="tab-form-right user-form-rt">
 														<h5>CVV NUMBER</h5>													
-														<input type="text" name="ccvv" value="xxxx" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'xxxx';}" required="true">
+														<input type="text" name="ccvv" value="" maxlength="4"required="true">
 													</div>
 													<div class="clear"></div>
 												</div>

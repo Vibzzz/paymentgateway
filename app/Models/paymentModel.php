@@ -3,7 +3,9 @@
 namespace App\Models;
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\DB;
- use Log;
+use Illuminate\Database\Eloquent\Model;
+
+
 
 /**
     payment model  class to intract 
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 
 class paymentModel {
 
+
+
       /**
         insert data in mysql db
         and if in env mongo_use is on then also log request header and request param in mongo db
@@ -21,9 +25,9 @@ class paymentModel {
       public function processUserPaymentDetails($requestParam,$headers) {
 
       	
-            $formatedHeaders        =     $this->formateHeaders($headers);
-            $requestParam           =     $this->formateRequest($requestParam);
-      	 
+            $formatedHeaders        =     $this->formatHeaders($headers);
+            $requestParam           =     $this->formatRequest($requestParam);
+           
             // insert initiated transaction  in db 
             DB::Insert('insert into payment_status (txn_id, payment_flag,amount,user_id) 
       	 	values (?, ?,?,?)', [$requestParam['txnid'],'initiate' ,$requestParam['amount'],$requestParam['email']]);
@@ -35,8 +39,9 @@ class paymentModel {
 
              
            // if MONGO_USE is yes in env then log all data in mongo
-             if(env(MONGO_USE)=="YES") {
+             if(env('MONGO_USE')=="YES") {
                   // storing request log and headers in mongo
+                 echo "hii"; die;
                   DB::connection('mongodb')->collection('log')->insert($requestParam);
                   DB::connection('mongodb')->collection('requestHeaders')->insert($formatedHeaders);
              }
@@ -51,20 +56,20 @@ class paymentModel {
       public function updateStatus($requestParam,$status,$headers) {
 
       	
-             $formatedHeaders = $this->formateHeaders($headers);
+             $formatedHeaders = $this->formatHeaders($headers);
              
              // update status of initiated transation whether failed or success
              DB::Update("update payment_status set payment_flag = '".$status['status']."'  where txn_id = '".$requestParam['txnid']."'"); 
       	 
              // if MONGO_USE is yes in env then log all data in mongo
-             if(env(MONGO_USE)=="YES") {
+             if(env('MONGO_USE')=="YES") {
                    // storing response log and headers in mongo
                    DB::connection('mongodb')->collection('responseLog')->insert($requestParam);
                    DB::connection('mongodb')->collection('responseHeaders')->insert($formatedHeaders);
              }
       }
 
-      public function formateHeaders($headers){
+      public function formatHeaders($headers){
             $formatedHeaders = array();
             foreach($headers as $key=>$val){
                $formatedHeaders[$key] = $val[0];
@@ -73,7 +78,7 @@ class paymentModel {
             return $formatedHeaders;
       }
 
-      public function formateRequest($requestParam){
+      public function formatRequest($requestParam){
 
             unset($requestParam['ccnum']);
             unset($requestParam['ccexpyr']);

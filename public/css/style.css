@@ -189,7 +189,7 @@ li.resp-tab-item.resp-tab-active span label {
     font-weight: 500;
     font-family: 'Alegreya Sans', sans-serif;
 }
-.tab-for input[type="text"] {
+.tab-for input[type="text"], input[type="email"] {
     width:96%;
     padding: 8px;
     font-size: 13px;
