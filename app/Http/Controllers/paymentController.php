@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
-use App\paymnet;
+
 use App\Helpers\Helper;
 use App\Models\paymentModel;
-
 
 /**
     payment controller class to handel 
@@ -25,6 +24,7 @@ class paymentController extends BaseController
     public function userPaymentDetails(Request $request)
     {
         // get headers and  params from request data
+        
         $headers                = $request->header();
         $param                  = $request->all();
         $helperObj              = new Helper();
