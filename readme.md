@@ -19,8 +19,10 @@
 			  `txn_id` varchar(25) NOT NULL,
 			  `created_at` timestamp NULL DEFAULT NULL,
 			  `updated_at` timestamp NULL DEFAULT NULL,
-			  PRIMARY KEY (`id`)
-			) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1
+			  PRIMARY KEY (`id`),
+			  KEY `txn_id_idx` (`txn_id`),
+			  CONSTRAINT `txn_id` FOREIGN KEY (`txn_id`) REFERENCES `payment_status` (`txn_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 		2 - CREATE TABLE `payment_status` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT,

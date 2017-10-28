@@ -64,7 +64,7 @@ class paymentModel {
            // if MONGO_USE is yes in env then log all data in mongo
              if(env('MONGO_USE')=="YES") {
                   // storing request log and headers in mongo
-                 echo "hii"; die;
+                 
                   DB::connection('mongodb')->collection('log')->insert($requestParam);
                   DB::connection('mongodb')->collection('requestHeaders')->insert($formatedHeaders);
              }
